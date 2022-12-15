@@ -8,16 +8,16 @@ import (
 	"github.com/pip-services3-gox/pip-services3-rpc-gox/clients"
 )
 
-type EmailSettingsHttpClientV1 struct {
+type EmailSettingsCommandableHttpClientV1 struct {
 	*clients.CommandableHttpClient
 }
 
-func NewEmailSettingsHttpClientV1() *EmailSettingsHttpClientV1 {
-	return NewEmailSettingsHttpClientV1ithConfig(nil)
+func NewEmailSettingsCommandableHttpClientV1() *EmailSettingsCommandableHttpClientV1 {
+	return NewEmailSettingsCommandableHttpClientV1ithConfig(nil)
 }
 
-func NewEmailSettingsHttpClientV1ithConfig(config *cconf.ConfigParams) *EmailSettingsHttpClientV1 {
-	c := &EmailSettingsHttpClientV1{
+func NewEmailSettingsCommandableHttpClientV1ithConfig(config *cconf.ConfigParams) *EmailSettingsCommandableHttpClientV1 {
+	c := &EmailSettingsCommandableHttpClientV1{
 		CommandableHttpClient: clients.NewCommandableHttpClient("v1/email_settings"),
 	}
 
@@ -28,7 +28,7 @@ func NewEmailSettingsHttpClientV1ithConfig(config *cconf.ConfigParams) *EmailSet
 	return c
 }
 
-func (c *EmailSettingsHttpClientV1) GetSettingsByIds(ctx context.Context, correlationId string, recipientIds []string) (result []*EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) GetSettingsByIds(ctx context.Context, correlationId string, recipientIds []string) (result []*EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"recipient_ids", recipientIds,
 	)
@@ -41,7 +41,7 @@ func (c *EmailSettingsHttpClientV1) GetSettingsByIds(ctx context.Context, correl
 	return clients.HandleHttpResponse[[]*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) GetSettingsById(ctx context.Context, correlationId string, recipientId string) (result *EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) GetSettingsById(ctx context.Context, correlationId string, recipientId string) (result *EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 	)
@@ -54,7 +54,7 @@ func (c *EmailSettingsHttpClientV1) GetSettingsById(ctx context.Context, correla
 	return clients.HandleHttpResponse[*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) GetSettingsByEmail(ctx context.Context, correlationId string, email string) (result *EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) GetSettingsByEmail(ctx context.Context, correlationId string, email string) (result *EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"email", email,
 	)
@@ -67,7 +67,7 @@ func (c *EmailSettingsHttpClientV1) GetSettingsByEmail(ctx context.Context, corr
 	return clients.HandleHttpResponse[*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) SetSettings(ctx context.Context, correlationId string, settings *EmailSettingsV1) (result *EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) SetSettings(ctx context.Context, correlationId string, settings *EmailSettingsV1) (result *EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"settings", settings,
 	)
@@ -80,7 +80,7 @@ func (c *EmailSettingsHttpClientV1) SetSettings(ctx context.Context, correlation
 	return clients.HandleHttpResponse[*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) SetVerifiedSettings(ctx context.Context, correlationId string, settings *EmailSettingsV1) (result *EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) SetVerifiedSettings(ctx context.Context, correlationId string, settings *EmailSettingsV1) (result *EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"settings", settings,
 	)
@@ -93,7 +93,7 @@ func (c *EmailSettingsHttpClientV1) SetVerifiedSettings(ctx context.Context, cor
 	return clients.HandleHttpResponse[*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) SetRecipient(ctx context.Context, correlationId string, recipientId string, name string, email string, language string) (result *EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) SetRecipient(ctx context.Context, correlationId string, recipientId string, name string, email string, language string) (result *EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 		"name", name,
@@ -109,7 +109,7 @@ func (c *EmailSettingsHttpClientV1) SetRecipient(ctx context.Context, correlatio
 	return clients.HandleHttpResponse[*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) SetSubscriptions(ctx context.Context, correlationId string, recipientId string, subscriptions any) (result *EmailSettingsV1, err error) {
+func (c *EmailSettingsCommandableHttpClientV1) SetSubscriptions(ctx context.Context, correlationId string, recipientId string, subscriptions any) (result *EmailSettingsV1, err error) {
 	params := data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 		"subscriptions", subscriptions,
@@ -123,7 +123,7 @@ func (c *EmailSettingsHttpClientV1) SetSubscriptions(ctx context.Context, correl
 	return clients.HandleHttpResponse[*EmailSettingsV1](res, correlationId)
 }
 
-func (c *EmailSettingsHttpClientV1) DeleteSettingsById(ctx context.Context, correlationId string, recipientId string) error {
+func (c *EmailSettingsCommandableHttpClientV1) DeleteSettingsById(ctx context.Context, correlationId string, recipientId string) error {
 	params := data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 	)
@@ -132,7 +132,7 @@ func (c *EmailSettingsHttpClientV1) DeleteSettingsById(ctx context.Context, corr
 	return err
 }
 
-func (c *EmailSettingsHttpClientV1) ResendVerification(ctx context.Context, correlationId string, recipientId string) error {
+func (c *EmailSettingsCommandableHttpClientV1) ResendVerification(ctx context.Context, correlationId string, recipientId string) error {
 	params := data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 	)
@@ -141,7 +141,7 @@ func (c *EmailSettingsHttpClientV1) ResendVerification(ctx context.Context, corr
 	return err
 }
 
-func (c *EmailSettingsHttpClientV1) VerifyEmail(ctx context.Context, correlationId string, recipientId string, code string) error {
+func (c *EmailSettingsCommandableHttpClientV1) VerifyEmail(ctx context.Context, correlationId string, recipientId string, code string) error {
 	params := data.NewAnyValueMapFromTuples(
 		"verify_email", recipientId,
 		"code", code,

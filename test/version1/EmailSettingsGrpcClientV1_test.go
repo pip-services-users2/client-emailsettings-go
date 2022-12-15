@@ -46,7 +46,7 @@ func (c *settingsGrpcClientV1Test) teardown(t *testing.T) {
 }
 
 func TestGrpcCrudOperations(t *testing.T) {
-	c := newSettingsHttpClientV1Test()
+	c := newSettingsGrpcClientV1Test()
 	c.setup(t)
 	defer c.teardown(t)
 

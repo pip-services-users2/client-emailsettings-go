@@ -22,7 +22,7 @@ func NewEmailSettingsClientFactory() *EmailSettingsClientFactory {
 	grpcClientDescriptor := cref.NewDescriptor("service-emailsettings", "client", "grpc", "*", "1.0")
 
 	c.RegisterType(memoryClientDescriptor, clients1.NewEmailSettingsMemoryClientV1)
-	c.RegisterType(cmdHttpClientDescriptor, clients1.NewEmailSettingsHttpClientV1)
+	c.RegisterType(cmdHttpClientDescriptor, clients1.NewEmailSettingsCommandableHttpClientV1)
 	c.RegisterType(cmdGrpcClientDescriptor, clients1.NewEmailSettingsCommandableGrpcClientV1)
 	c.RegisterType(grpcClientDescriptor, clients1.NewEmailSettingsGrpcClientV1)
 

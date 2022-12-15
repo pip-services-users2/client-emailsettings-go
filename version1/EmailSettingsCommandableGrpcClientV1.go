@@ -29,9 +29,6 @@ func NewEmailSettingsCommandableGrpcClientV1WithConfig(config *cconf.ConfigParam
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) GetSettingsByIds(ctx context.Context, correlationId string, recipientIds []string) (result []*EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.get_settings_by_ids")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "get_settings_by_ids", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_ids", recipientIds,
 	))
@@ -44,9 +41,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) GetSettingsByIds(ctx context.Cont
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) GetSettingsById(ctx context.Context, correlationId string, recipientId string) (result *EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.get_settings_by_id")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "get_settings_by_id", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 	))
@@ -59,9 +53,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) GetSettingsById(ctx context.Conte
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) GetSettingsByEmail(ctx context.Context, correlationId string, email string) (result *EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.get_settings_by_email")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "get_settings_by_email", correlationId, data.NewAnyValueMapFromTuples(
 		"email", email,
 	))
@@ -74,9 +65,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) GetSettingsByEmail(ctx context.Co
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) SetSettings(ctx context.Context, correlationId string, settings *EmailSettingsV1) (result *EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.set_settings")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "set_settings", correlationId, data.NewAnyValueMapFromTuples(
 		"settings", settings,
 	))
@@ -89,9 +77,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) SetSettings(ctx context.Context, 
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) SetVerifiedSettings(ctx context.Context, correlationId string, settings *EmailSettingsV1) (result *EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.set_verified_settings")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "set_verified_settings", correlationId, data.NewAnyValueMapFromTuples(
 		"settings", settings,
 	))
@@ -104,9 +89,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) SetVerifiedSettings(ctx context.C
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) SetRecipient(ctx context.Context, correlationId string, recipientId string, name string, email string, language string) (result *EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.set_recipient")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "set_recipient", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 		"name", name,
@@ -122,9 +104,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) SetRecipient(ctx context.Context,
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) SetSubscriptions(ctx context.Context, correlationId string, recipientId string, subscriptions any) (result *EmailSettingsV1, err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.set_subscriptions")
-	defer timing.EndTiming(ctx, err)
-
 	res, err := c.CallCommand(ctx, "set_subscriptions", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 		"subscriptions", subscriptions,
@@ -138,9 +117,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) SetSubscriptions(ctx context.Cont
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) DeleteSettingsById(ctx context.Context, correlationId string, recipientId string) (err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.delete_settings_by_id")
-	defer timing.EndTiming(ctx, err)
-
 	_, err = c.CallCommand(ctx, "delete_settings_by_id", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 	))
@@ -149,9 +125,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) DeleteSettingsById(ctx context.Co
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) ResendVerification(ctx context.Context, correlationId string, recipientId string) (err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.resend_verification")
-	defer timing.EndTiming(ctx, err)
-
 	_, err = c.CallCommand(ctx, "resend_verification", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 	))
@@ -160,9 +133,6 @@ func (c *EmailSettingsCommandableGrpcClientV1) ResendVerification(ctx context.Co
 }
 
 func (c *EmailSettingsCommandableGrpcClientV1) VerifyEmail(ctx context.Context, correlationId string, recipientId string, code string) (err error) {
-	timing := c.Instrument(ctx, correlationId, "email_settings.verify_email")
-	defer timing.EndTiming(ctx, err)
-
 	_, err = c.CallCommand(ctx, "verify_email", correlationId, data.NewAnyValueMapFromTuples(
 		"recipient_id", recipientId,
 		"code", code,

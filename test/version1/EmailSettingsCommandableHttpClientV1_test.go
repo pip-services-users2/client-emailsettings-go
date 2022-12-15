@@ -9,16 +9,16 @@ import (
 	"github.com/pip-services3-gox/pip-services3-commons-gox/config"
 )
 
-type settingsHttpClientV1Test struct {
-	client  *version1.EmailSettingsHttpClientV1
+type settingsCommandableHttpClientV1Test struct {
+	client  *version1.EmailSettingsCommandableHttpClientV1
 	fixture *EmailSettingsClientFixtureV1
 }
 
-func newSettingsHttpClientV1Test() *settingsHttpClientV1Test {
-	return &settingsHttpClientV1Test{}
+func newSettingsCommandableHttpClientV1Test() *settingsCommandableHttpClientV1Test {
+	return &settingsCommandableHttpClientV1Test{}
 }
 
-func (c *settingsHttpClientV1Test) setup(t *testing.T) {
+func (c *settingsCommandableHttpClientV1Test) setup(t *testing.T) {
 	var HTTP_HOST = os.Getenv("HTTP_HOST")
 	if HTTP_HOST == "" {
 		HTTP_HOST = "localhost"
@@ -34,19 +34,19 @@ func (c *settingsHttpClientV1Test) setup(t *testing.T) {
 		"connection.port", HTTP_PORT,
 	)
 
-	c.client = version1.NewEmailSettingsHttpClientV1()
+	c.client = version1.NewEmailSettingsCommandableHttpClientV1()
 	c.client.Configure(context.Background(), httpConfig)
 	c.client.Open(context.Background(), "")
 
 	c.fixture = NewEmailSettingsClientFixtureV1(c.client)
 }
 
-func (c *settingsHttpClientV1Test) teardown(t *testing.T) {
+func (c *settingsCommandableHttpClientV1Test) teardown(t *testing.T) {
 	c.client.Close(context.Background(), "")
 }
 
 func TestHttpCrudOperations(t *testing.T) {
-	c := newSettingsHttpClientV1Test()
+	c := newSettingsCommandableHttpClientV1Test()
 	c.setup(t)
 	defer c.teardown(t)
 
