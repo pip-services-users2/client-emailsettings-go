@@ -6,8 +6,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.test
-    image: ${IMAGE:-mst/test}
-    command: ${TEST_CMD:-go test ./test/...}
+    image: ${IMAGE:-pipservices/test}
     links:
       - service
     environment:
@@ -15,23 +14,11 @@ services:
       - GRPC_PORT=8090
       - HTTP_HOST=service
       - HTTP_PORT=8080
-      
-  service:
-    image: pipdevs/service-emailsettings-node:latest
-    links:
-      - email
-    environment:
-      - EMAIL_SERVICE_HOST=email
-      - EMAIL_SERVICE_PORT=8080
-      - HTTP_ENABLED=true
-      - GRPC_ENABLED=true
-    ports:
-      - "8080:8080"
-      - "8090:8090"
 
-  email:
-    # image: pipdevs/pip-services-email-node:1.0.1-24-rc
-    image: pipdevs/service-email-node:latest
+  service:
+    image: pipservices/service-accounts-node:latest
     environment:
       - HTTP_ENABLED=true
       - GRPC_ENABLED=true
+      - GRPC_PORT=8090
+      - HTTP_PORT=8080
